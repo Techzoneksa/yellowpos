@@ -1,10 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "../src/styles.css";
+
+export const viewport: Viewport = {
+  themeColor: "#952650",
+};
 
 export const metadata: Metadata = {
   title: "Yellow Chicken POS — يلو تشكن",
   description: "نظام نقاط البيع لمطاعم يلو تشكن. Tablet-first POS UI prototype.",
-  themeColor: "#952650",
   openGraph: {
     title: "Yellow Chicken POS — يلو تشكن",
     description: "نظام نقاط البيع لمطاعم يلو تشكن. Tablet-first POS UI prototype.",
