@@ -5,7 +5,7 @@
   "sideEffects": false,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "echo COMMIT && git rev-parse --short HEAD || true && echo SRC_LIB && ls -la src/lib/*.tsx 2>&1 && next build",
     "start": "next start",
     "lint": "next lint"
   },
