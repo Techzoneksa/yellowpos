@@ -1,7 +1,7 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import { EnvGuard } from "@/components/EnvGuard";
 import { AppProvider, useApp, ADMIN_SCREENS, POS_SCREENS, isAdminRole } from "@/lib/store";
 import { CatalogProvider } from "@/lib/catalog-context";

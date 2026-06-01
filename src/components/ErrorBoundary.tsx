@@ -1,54 +1,30 @@
 "use client";
+import React from 'react';
 
-import { Component, type ReactNode } from "react";
+interface Props { children: React.ReactNode; fallback?: React.ReactNode; }
+interface State { hasError: boolean; error?: Error; }
 
-type Props = {
-  children: ReactNode;
-  fallback?: ReactNode;
-};
-
-type State = {
-  hasError: boolean;
-  errorMessage: string;
-};
-
-export class ErrorBoundary extends Component<Props, State> {
+export default class ErrorBoundary extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { hasError: false, errorMessage: '' };
+    this.state = { hasError: false };
   }
-
   static getDerivedStateFromError(error: Error): State {
-    return { hasError: true, errorMessage: error.message };
+    return { hasError: true, error };
   }
-
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
-    console.error('ErrorBoundary caught:', error, errorInfo);
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
+    console.error('ErrorBoundary caught:', error, info);
   }
-
-  render(): ReactNode {
+  render() {
     if (this.state.hasError) {
-      if (this.props.fallback) {
-        return this.props.fallback;
-      }
-
-      return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-900">
-          <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-lg w-full text-center">
-            <div className="text-6xl mb-4">⚠️</div>
-            <h1 className="text-2xl font-bold text-white mb-4">حدث خطأ</h1>
-            <p className="text-red-400 mb-4">{this.state.errorMessage}</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded"
-            >
-              إعادة تحميل الصفحة
-            </button>
-          </div>
+      return this.props.fallback ?? (
+        <div style={{ padding: '2rem', textAlign: 'center' }}>
+          <h2>حدث خطأ غير متوقع</h2>
+          <p>{this.state.error?.message}</p>
+          <button onClick={() => this.setState({ hasError: false })}>إعادة المحاولة</button>
         </div>
       );
     }
-
     return this.props.children;
   }
 }
