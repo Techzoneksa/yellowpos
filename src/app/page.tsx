@@ -2,7 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import { EnvGuard } from "@/components/EnvGuard";
+import EnvGuard from "@/components/EnvGuard";
 import { AppProvider, useApp, ADMIN_SCREENS, POS_SCREENS, isAdminRole } from "@/lib/store";
 import { CatalogProvider } from "@/lib/catalog-context";
 import { SettingsProvider } from "@/lib/settings-context";
@@ -109,7 +109,7 @@ function Router() {
 export default function Home() {
   return (
     <ErrorBoundary>
-      <EnvGuard>
+      <EnvGuard required={["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"]}>
         <QueryClientProvider client={queryClient}>
           <AppProvider>
             <SettingsProvider>
