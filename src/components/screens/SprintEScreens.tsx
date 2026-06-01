@@ -629,8 +629,8 @@ export function ManagerBackup() {
             <div className="font-semibold">{lang === "ar" ? "Supabase يدير النسخ التلقائي" : "Supabase manages automatic backups"}</div>
             <div className="text-xs text-muted-foreground">
               {lang === "ar"
-                ? "قاعدة البيانات على Lovable Cloud (Supabase) تعمل بنسخ يومية مُدارة. لا تحتاج تشغيل سكربتات يدوية."
-                : "Your database on Lovable Cloud (Supabase) runs managed daily backups. No manual scripts required."}
+                ? "قاعدة البيانات على Supabase تعمل بنسخ يومية مُدارة. لا تحتاج تشغيل سكربتات يدوية."
+                : "Your database on Supabase runs managed daily backups. No manual scripts required."}
             </div>
           </div>
         </div>
